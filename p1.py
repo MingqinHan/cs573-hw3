@@ -34,7 +34,6 @@ def run_bagging(X_train, y_train, X_test, y_test, dataset_name):
         # Base estimator: SVM classifier
         base_svm = SVC(probability=True, random_state=0)
 
-        # Use positional arg for estimator so it works across sklearn versions
         clf = BaggingClassifier(
             base_svm,          # estimator
             n_estimators=n,
@@ -62,7 +61,6 @@ def run_boosting(X_train, y_train, X_test, y_test, dataset_name):
         # Base estimator: decision stump
         base_tree = DecisionTreeClassifier(max_depth=1, random_state=0)
 
-        # Use SAMME to avoid FutureWarning about SAMME.R deprecation
         clf = AdaBoostClassifier(
             base_tree,         # estimator
             n_estimators=n,
@@ -84,7 +82,6 @@ def run_boosting(X_train, y_train, X_test, y_test, dataset_name):
 
 
 def main():
-    # change this path if your npz is elsewhere
     data_path = "datahw3.npz"
 
     (X1_tr, y1_tr, X1_te, y1_te,
